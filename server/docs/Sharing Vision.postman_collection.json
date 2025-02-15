@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "583751af-21a5-4dbf-b885-3c78f02cdd93",
+		"name": "Sharing Vision",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18310786"
+	},
+	"item": [
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/ping",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"This is a valid title with more than 20 chars\",  \r\n    \"content\": \"This is a valid content with more than 200 characters. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit. asjdhasjdgakhdakjshdgakjsdAUSHDKugsdkjHGSDasdkigfkajfhgkjdfhksjhdgfakjshgdaf\",\r\n    \"category\":\"Tech\",\r\n    \"status\":\"publish\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/article",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"article"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get post by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/article/2",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"article",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/article?limit=5&offset=0",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"article"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"This is a valid title with more than 20 chars test 1\",  \r\n    \"content\": \"This is a valid content with more than 200 characters. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit. asjdhasjdgakhdakjshdgakjsdAUSHDKugsdkjHGSDasdkigfkajfhgkjdfhksjhdgfakjshgdaf\",\r\n    \"category\":\"Tech\",\r\n    \"status\":\"draft\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/article/1",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"article",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete post",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/article/1",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"article",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
