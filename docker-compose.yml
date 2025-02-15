@@ -1,0 +1,45 @@
+version: '1.0'
+services:
+  mysql-db:
+    image: mysql
+    container_name: mysql-db
+    restart: always
+    volumes:
+      - ./db-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+
+  backendgo:
+    container_name: backendgo
+    image: golang:1.0.0
+    restart: always
+    build:
+      context: ./server
+      dockerfile: go.dockerfile
+    environment:
+      - DATABASE_URL:mysql://${DB_USER}:${DB_PASSWORD}@tcp(${DB_HOST}:${DB_PORT})/${DB_NAME}?charset=utf8mb4&parseTime=True&loc=Local
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mysql-db
+
+  frontendnext:
+    container_name: frontendnext
+    image: frontendnext:1.0.0
+    build:
+      context: ./client
+      dockerfile: next.dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - NEXT_PUBLIC_API_URL=http://host.docker.internal:8080
+    depends_on:
+      - backendgo  
+
+volumes:
+  mysql-db: {}
